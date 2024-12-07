@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Novel Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    form input, form button {
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    #payment, #download {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Novel Store</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#genres">Genres</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#upload">Upload</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login Form -->
+    <section id="login">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <!-- Genre Section -->
+    <section id="genres">
+      <h2>Genres</h2>
+      <div id="genre-list"></div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search">
+      <h2>Search for Novels</h2>
+      <input type="text" id="search-bar" placeholder="Search by title or author">
+      <button onclick="searchNovel()">Search</button>
+      <div id="search-results"></div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+      <h2>Upload a Novel</h2>
+      <form id="upload-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter novel title" required>
+        <label for="author">Author:</label>
+        <input type="text" id="author" placeholder="Enter author's name" required>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre" required>
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" required>
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment">
+      <h2>Payment Details</h2>
+      <p>Send payment to the following address:</p>
+      <p><strong>Address:</strong> 0x1234567890ABCDEF</p>
+      <p><strong>Network:</strong> Ethereum</p>
+      <button onclick="confirmPayment()">Confirm Payment</button>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download">
+      <h2>Download Novel</h2>
+      <p>Your payment has been confirmed. Click below to download your novel.</p>
+      <a id="download-link" href="#" download>Download Novel</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Online Novel Store</p>
+  </footer>
+
+  <script>
+    let novels = []; // Store uploaded novels
+
+    // Handle login
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Login successful!");
+    });
+
+    // Handle novel upload
+    document.getElementById("upload-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const author = document.getElementById("author").value;
+      const genre = document.getElementById("genre").value;
+      const file = document.getElementById("file").files[0];
+
+      if (file) {
+        novels.push({ title, author, genre, file });
+        alert(`${title} by ${author} uploaded successfully!`);
+      }
+    });
+
+    // Generate genres dynamically
+    const genres = ["Fantasy", "Romance", "Sci-Fi", "Mystery"];
+    const genreList = document.getElementById("genre-list");
+    genres.forEach((genre) => {
+      const button = document.createElement("button");
+      button.innerText = genre;
+      button.onclick = () => filterByGenre(genre);
+      genreList.appendChild(button);
+    });
+
+    function filterByGenre(genre) {
+      const results = novels.filter((novel) => novel.genre === genre);
+      displaySearchResults(results);
+    }
+
+    // Search novels by title or author
+    function searchNovel() {
+      const query = document.getElementById("search-bar").value.toLowerCase();
+      const results = novels.filter(
+        (novel) =>
+          novel.title.toLowerCase().includes(query) ||
+          novel.author.toLowerCase().includes(query)
+      );
+      displaySearchResults(results);
+    }
+
+    function displaySearchResults(results) {
+      const resultsDiv = document.getElementById("search-results");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Novel Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    form input, form button {
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    #payment, #download {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Novel Store</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#genres">Genres</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#upload">Upload</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login Form -->
+    <section id="login">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <!-- Genre Section -->
+    <section id="genres">
+      <h2>Genres</h2>
+      <div id="genre-list"></div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search">
+      <h2>Search for Novels</h2>
+      <input type="text" id="search-bar" placeholder="Search by title or author">
+      <button onclick="searchNovel()">Search</button>
+      <div id="search-results"></div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+      <h2>Upload a Novel</h2>
+      <form id="upload-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter novel title" required>
+        <label for="author">Author:</label>
+        <input type="text" id="author" placeholder="Enter author's name" required>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre" required>
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" required>
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment">
+      <h2>Payment Details</h2>
+      <p>Send payment to the following address:</p>
+      <p><strong>Address:</strong> 0x1234567890ABCDEF</p>
+      <p><strong>Network:</strong> Ethereum</p>
+      <button onclick="confirmPayment()">Confirm Payment</button>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download">
+      <h2>Download Novel</h2>
+      <p>Your payment has been confirmed. Click below to download your novel.</p>
+      <a id="download-link" href="#" download>Download Novel</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Online Novel Store</p>
+  </footer>
+
+  <script>
+    let novels = []; // Store uploaded novels
+
+    // Handle login
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Login successful!");
+    });
+
+    // Handle novel upload
+    document.getElementById("upload-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const author = document.getElementById("author").value;
+      const genre = document.getElementById("genre").value;
+      const file = document.getElementById("file").files[0];
+
+      if (file) {
+        novels.push({ title, author, genre, file });
+        alert(`${title} by ${author} uploaded successfully!`);
+      }
+    });
+
+    // Generate genres dynamically
+    const genres = ["Fantasy", "Romance", "Sci-Fi", "Mystery"];
+    const genreList = document.getElementById("genre-list");
+    genres.forEach((genre) => {
+      const button = document.createElement("button");
+      button.innerText = genre;
+      button.onclick = () => filterByGenre(genre);
+      genreList.appendChild(button);
+    });
+
+    function filterByGenre(genre) {
+      const results = novels.filter((novel) => novel.genre === genre);
+      displaySearchResults(results);
+    }
+
+    // Search novels by title or author
+    function searchNovel() {
+      const query = document.getElementById("search-bar").value.toLowerCase();
+      const results = novels.filter(
+        (novel) =>
+          novel.title.toLowerCase().includes(query) ||
+          novel.author.toLowerCase().includes(query)
+      );
+      displaySearchResults(results);
+    }
+
+    function displaySearchResults(results) {
+      const resultsDiv = document.getElementById("search-results");
+      resultsDiv.innerHTML = ""; // Clear previous results
+      results.forEach((novel) => {
+        const novelDiv = document.createElement("div");
+        novelDiv.innerHTML = `
+          <h3>${novel.title}</h3>
+          <p>Author: ${novel.author}</p>
+          <p>Genre: ${novel.genre}</p>
+          <button onclick="initiatePayment('${novel.title}')">Buy</button>
+        `;
+        resultsDiv.appendChild(novelDiv);
+      });
+    }
+
+    // Handle payment process
+    function initiatePayment(title) {
+      alert(`You are buying: ${title}`);
+      document.getElementById("payment").style.display = "block";
+    }
+
+    function confirmPayment() {
+      document.getElementById("payment").style.display = "none";
+      document.getElementById("download").style.display = "block";
+      document.getElementById("download-link").href = "#"; // Replace with actual file URL
+    }
+  </script>
+</body>
+</html>￼Enter<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Novel Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    form input, form button {
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    #payment, #download {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Novel Store</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#genres">Genres</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#upload">Upload</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login Form -->
+    <section id="login">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <!-- Genre Section -->
+    <section id="genres">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Novel Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    form input, form button {
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    #payment, #download {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Novel Store</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#genres">Genres</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#upload">Upload</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login Form -->
+    <section id="login">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <!-- Genre Section -->
+    <section id="genres">
+      <h2>Genres</h2>
+      <div id="genre-list"></div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search">
+      <h2>Search for Novels</h2>
+      <input type="text" id="search-bar" placeholder="Search by title or author">
+      <button onclick="searchNovel()">Search</button>
+      <div id="search-results"></div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+      <h2>Upload a Novel</h2>
+      <form id="upload-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter novel title" required>
+        <label for="author">Author:</label>
+        <input type="text" id="author" placeholder="Enter author's name" required>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre" required>
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" required>
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment">
+      <h2>Payment Details</h2>
+      <p>Send payment to the following address:</p>
+      <p><strong>Address:</strong> 0x1234567890ABCDEF</p>
+      <p><strong>Network:</strong> Ethereum</p>
+      <button onclick="confirmPayment()">Confirm Payment</button>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download">
+      <h2>Download Novel</h2>
+      <p>Your payment has been confirmed. Click below to download your novel.</p>
+      <a id="download-link" href="#" download>Download Novel</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Online Novel Store</p>
+  </footer>
+
+  <script>
+    let novels = []; // Store uploaded novels
+
+    // Handle login
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Login successful!");
+    });
+
+    // Handle novel upload
+    document.getElementById("upload-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const author = document.getElementById("author").value;
+      const genre = document.getElementById("genre").value;
+      const file = document.getElementById("file").files[0];
+
+      if (file) {
+        novels.push({ title, author, genre, file });
+        alert(`${title} by ${author} uploaded successfully!`);
+      }
+    });
+
+    // Generate genres dynamically
+    const genres = ["Fantasy", "Romance", "Sci-Fi", "Mystery"];
+    const genreList = document.getElementById("genre-list");
+    genres.forEach((genre) => {
+      const button = document.createElement("button");
+      button.innerText = genre;
+      button.onclick = () => filterByGenre(genre);
+      genreList.appendChild(button);
+    });
+
+    function filterByGenre(genre) {
+      const results = novels.filter((novel) => novel.genre === genre);
+      displaySearchResults(results);
+    }
+
+    // Search novels by title or author
+    function searchNovel() {
+      const query = document.getElementById("search-bar").value.toLowerCase();
+      const results = novels.filter(
+        (novel) =>
+          novel.title.toLowerCase().includes(query) ||
+          novel.author.toLowerCase().includes(query)
+      );
+      displaySearchResults(results);
+    }
+
+    function displaySearchResults(results) {
+      const resultsDiv = document.getElementById("search-results");
+      resultsDiv.innerHTML = ""; // Clear previous results
+      results.forEach((novel) => {
+        const novelDiv = document.createElement("div");
+        novelDiv.innerHTML = `
+          <h3>${novel.title}</h3>
+          <p>Author: ${novel.author}</p>
+          <p>Genre: ${novel.genre}</p>
+          <button onclick="initiatePayment('${novel.title}')">Buy</button>
+        `;
+        resultsDiv.appendChild(novelDiv);
+      });
+    }
+
+    // Handle payment process
+    function initiatePayment(title) {
+      alert(`You are buying: ${title}`);
+      document.getElementById("payment").style.display = "block";
+    }
+
+    function confirmPayment() {
+      document.getElementById("payment").style.display = "none";
+      document.getElementById("download").style.display = "block";
+      document.getElementById("download-link").href = "#"; // Replace with actual file URL
+    }
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Novel Store</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+    }
+
+    section {
+      padding: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    form input, form button {
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+    }
+
+    #payment, #download {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Novel Store</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#genres">Genres</a></li>
+        <li><a href="#search">Search</a></li>
+        <li><a href="#upload">Upload</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Login Form -->
+    <section id="login">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <!-- Genre Section -->
+    <section id="genres">
+      <h2>Genres</h2>
+      <div id="genre-list"></div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search">
+      <h2>Search for Novels</h2>
+      <input type="text" id="search-bar" placeholder="Search by title or author">
+      <button onclick="searchNovel()">Search</button>
+      <div id="search-results"></div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+      <h2>Upload a Novel</h2>
+      <form id="upload-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter novel title" required>
+        <label for="author">Author:</label>
+        <input type="text" id="author" placeholder="Enter author's name" required>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre" required>
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" required>
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment">
+      <h2>Payment Details</h2>
+      <p>Send payment to the following address:</p>
+      <p><strong>Address:</strong> 0x1234567890ABCDEF</p>
+      <p><strong>Network:</strong> Ethereum</p>
+      <button onclick="confirmPayment()">Confirm Payment</button>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download">
+      <h2>Download Novel</h2>
+      <p>Your payment has been confirmed. Click below to download your novel.</p>
+      <a id="download-link" href="#" download>Download Novel</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Online Novel Store</p>
+  </footer>
+
+  <script>
+    let novels = []; // Store uploaded novels
+
+    // Handle login
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Login successful!");
+    });
+
+    // Handle novel upload
+    document.getElementById("upload-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const author = document.getElementById("author").value;
+      const genre = document.getElementById("genre").value;
+      const file = document.getElementById("file").files[0];
+
+      if (file) {
+        novels.push({ title, author, genre, file });
+        alert(`${title} by ${author} uploaded successfully!`);
+      }
+    });
+
+    // Generate genres dynamically
+    const genres = ["Fantasy", "Romance", "Sci-Fi", "Mystery"];
+    const genreList = document.getElementById("genre-list");
+    genres.forEach((genre) => {
+      const button = document.createElement("button");
+      button.innerText = genre;
+      button.onclick = () => filterByGenre(genre);
+      genreList.appendChild(button);
+    });
+
+    function filterByGenre(genre) {
+      const results = novels.filter((novel) => novel.genre === genre);
+      displaySearchResults(results);
+    }
+
+    // Search novels by title or author
+    function searchNovel() {
+      const query = document.getElementById("search-bar").value.toLowerCase();
+      const results = novels.filter(
+        (novel) =>
+          novel.title.toLowerCase().includes(query) ||
+          novel.author.toLowerCase().includes(query)
+      );
+      displaySearchResults(results);
+    }
+
+    function displaySearchResults(results) {
+      const resultsDiv = document.getElementById("search-results");
+      resultsDiv.innerHTML = ""; // Clear previous results
+      results.forEach((novel) => {
+        const novelDiv = document.createElement("div");
+        novelDiv.innerHTML = `
+          <h3>${novel.title}</h3>
+          <p>Author: ${novel.author}</p>
+          <p>Genre: ${novel.genre}</p>
+          <button onclick="initiatePayment('${novel.title}')">Buy</button>
+        `;
+        resultsDiv.appendChild(novelDiv);
+      });
+    }
+
+    // Handle payment process
+    function initiatePayment(title) {
+      alert(`You are buying: ${title}`);
+      document.getElementById("payment").style.display = "block";
+    }
+
+    function confirmPayment() {
+      document.getElementById("payment").style.display = "none";
+      document.getElementById("download").style.display = "block";
+      document.getElementById("download-link").href = "#"; // Replace with actual file URL
+    }
+  </script>
+</body>
+</html>￼Enter      <h2>Genres</h2>
+      <div id="genre-list"></div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search">
+      <h2>Search for Novels</h2>
+      <input type="text" id="search-bar" placeholder="Search by title or author">
+      <button onclick="searchNovel()">Search</button>
+      <div id="search-results"></div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload">
+      <h2>Upload a Novel</h2>
+      <form id="upload-form">
+        <label for="title">Title:</label>
+        <input type="text" id="title" placeholder="Enter novel title" required>
+        <label for="author">Author:</label>
+        <input type="text" id="author" placeholder="Enter author's name" required>
+        <label for="genre">Genre:</label>
+        <input type="text" id="genre" placeholder="Enter genre" required>
+        <label for="file">Upload File:</label>
+        <input type="file" id="file" required>
+        <button type="submit">Upload</button>
+      </form>
+    </section>
+
+    <!-- Payment Section -->
+    <section id="payment">
+      <h2>Payment Details</h2>
+      <p>Send payment to the following address:</p>
+      <p><strong>Address:</strong> 0x1234567890ABCDEF</p>
+      <p><strong>Network:</strong> Ethereum</p>
+      <button onclick="confirmPayment()">Confirm Payment</button>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download">
+      <h2>Download Novel</h2>
+      <p>Your payment has been confirmed. Click below to download your novel.</p>
+      <a id="download-link" href="#" download>Download Novel</a>
+section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Online Novel Store</p>
+  </footer>
+
+  <script>
+    let novels = []; // Store uploaded novels
+
+    // Handle login
+    document.getElementById("login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Login successful!");
+    });
+
+    // Handle novel upload
+    document.getElementById("upload-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const title = document.getElementById("title").value;
+      const author = document.getElementById("author").value;
+      const genre = document.getElementById("genre").value;
+      const file = document.getElementById("file").files[0];
+
+      if (file) {
+        novels.push({ title, author, genre, file });
+        alert(`${title} by ${author} uploaded successfully!`);
+      }
+    });
+
+    // Generate genres dynamically
+    const genres = ["Fantasy", "Romance", "Sci-Fi", "Mystery"];
+    const genreList = document.getElementById("genre-list");
+    genres.forEach((genre) => {
+      const button = document.createElement("button");
+      button.innerText = genre;
+      button.onclick = () => filterByGenre(genre);
+      genreList.appendChild(button);
+    });
+
+    function filterByGenre(genre) {
+      const results = novels.filter((novel) => novel.genre === genre);
